@@ -1,11 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../constants";
-import { multiClientMiddleware } from "redux-axios-middleware";
+import axiosMiddleware from "redux-axios-middleware";
 
-const client = {
-  default: {
-    client: axios.create({ BASE_URL, responseType: "json" })
-  }
-}
+const client = axios.create({ baseURL: BASE_URL, responseType: "json" });
 
-export default multiClientMiddleware(client);
+export default axiosMiddleware(client);

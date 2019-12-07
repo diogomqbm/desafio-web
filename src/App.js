@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import routes from "./routes";
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>

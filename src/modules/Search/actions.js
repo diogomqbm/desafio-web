@@ -1,9 +1,10 @@
 import * as c from "./constants";
 
-export const fetchRepos = ({ queryString, sort, page }) => (
+export const fetchRepos = (payload) => (
   dispatch
 ) => {
-  dispatch({
+  const { queryString, sort, page } = payload;
+  return dispatch({
     type: c.FETCH_REPOS,
     payload: {
       request: {
@@ -12,10 +13,20 @@ export const fetchRepos = ({ queryString, sort, page }) => (
       },
       options: {
         onSuccess: ({ getState, dispatch, response }) => {
-          console.log(response)
+          dispatch({
+            type: c.FETCH_REPOS_SUCCESS,
+            payload: {
+              data: response.data
+            }
+          })
         },
         onError: ({ getState, dispatch, error }) => {
-          console.log(error)
+          dispatch({
+            type: c.FETCH_REPOS_FAIL,
+            payload: {
+              error
+            }
+          })
         }
       }
     }

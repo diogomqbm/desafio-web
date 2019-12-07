@@ -18,9 +18,11 @@ const search = (state = INITIAL_STATE, { type, payload }) =>
       case c.FETCH_REPOS_SUCCESS:
         draft.loading = false;
         if (payload.data) {
-          return draft.repos = payload.data;
-        } 
-        return draft.empty = true;
+          draft.repos = payload.data;
+        } else {
+          draft.empty = true;
+        }
+        return;
 
       case c.FETCH_REPOS_FAIL:
         draft.loading = false;
