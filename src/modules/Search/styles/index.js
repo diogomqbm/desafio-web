@@ -32,3 +32,8 @@ export const Select = styled.select`
 export const Content = styled.div`
   margin-top: 10%;
 `;
+
+export const List = styled.div`
+  max-height: 800px;
+  overflow-y: auto;
+`;

@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     repos: {},
     loading: false,
     empty: false,
-    error: ""
+    error: "",
+    page: 1
 }
 
 const search = (state = INITIAL_STATE, { type, payload }) =>
@@ -18,7 +19,12 @@ const search = (state = INITIAL_STATE, { type, payload }) =>
       case c.FETCH_REPOS_SUCCESS:
         draft.loading = false;
         if (payload.data) {
-          draft.repos = payload.data;
+          if (state.repos.items) {
+            draft.page = state.page + 1;
+            draft.repos.items = state.repos.items.concat(payload.data.items);
+          } else {
+            draft.repos = payload.data;
+          }
         } else {
           draft.empty = true;
         }
