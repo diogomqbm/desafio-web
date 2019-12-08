@@ -2,7 +2,7 @@ import produce from "immer";
 import * as c from "./constants";
 
 const INITIAL_STATE = {
-    repos: [],
+    repos: {},
     loading: false,
     empty: false,
     error: ""

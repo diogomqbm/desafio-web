@@ -13,13 +13,22 @@ export const TextInput = styled.input`
   width: 80%;
 `
 
+export const Label = styled.label`
+  font-weight: 600;
+  width: 10%;
+`;
+
 export const Select = styled.select`
   border: none;
   border-bottom: 1px solid #e9e9e9;
   font-size: 1rem;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   padding: 2% 0;
   margin: 5% 0;
-  min-width: 60%;
-`
+  min-width: 67%;
+`;
+
+export const Content = styled.div`
+  margin-top: 10%;
+`;
