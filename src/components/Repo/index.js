@@ -3,7 +3,12 @@ import styled from "styled-components";
 
 const Repo = (props) => {
 
-  const Container = styled.section`
+  const { owner, name, description, stargazers_count, forks, full_name } = props;
+
+  const Container = styled.a`
+    display: block;
+    text-decoration: none;
+    color: #1c1c1c;
     position: relative;
     padding: 2%;
     border: none;
@@ -36,7 +41,7 @@ const Repo = (props) => {
     position: absolute;
     right: 2%;
     top: 33%;
-    background-image: url(${props.owner.avatar_url});
+    background-image: url(${owner.avatar_url});
     width: 50px;
     height: 50px;
     background-size: contain;
@@ -45,13 +50,13 @@ const Repo = (props) => {
   `
 
   return (
-    <Container>
+    <Container href={full_name}>
         <div>
-          <Title>{props.name}</Title>
-          <Description>{props.description}</Description>
+          <Title>{name}</Title>
+          <Description>{description}</Description>
         <Stats>
-          <Description><b>Forks:</b> {props.forks}</Description>
-          <Description><b>Stars:</b> {props.stargazers_count}</Description>
+          <Description><b>Forks:</b> {forks}</Description>
+          <Description><b>Stars:</b> {stargazers_count}</Description>
         </Stats>
       </div>
       <Avatar/>
