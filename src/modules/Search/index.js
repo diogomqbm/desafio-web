@@ -27,19 +27,30 @@ const Search = () => {
 
   return (
     <Wrapper>
+
       <Header>
-        <TextInput placeholder="Search repo by keyword"/>
-        <Select>
-          {getSortOptions}
-        </Select>
-        <Select>
-          {getOrderOptions}
-        </Select>
+        <TextInput placeholder="Keyword"/>
+        <div>
+          <label>Sort:</label>
+          <Select>
+            {getSortOptions}
+          </Select>
+        </div>
+        <div>
+          <label>Order:</label>
+          <Select>
+            {getOrderOptions}
+          </Select>
+        </div>
         <Button>
-          Buscar
+          Search repos
         </Button>
       </Header>
-      <h1>Bla</h1>
+
+      <div>
+
+      </div>
+      
     </Wrapper>
   )
 }

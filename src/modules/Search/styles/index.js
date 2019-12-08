@@ -10,6 +10,7 @@ export const TextInput = styled.input`
   font-size: 1rem;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
+  width: 80%;
 `
 
 export const Select = styled.select`
@@ -18,5 +19,7 @@ export const Select = styled.select`
   font-size: 1rem;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  min-width: 15%;
+  padding: 2% 0;
+  margin: 5% 0;
+  min-width: 60%;
 `
