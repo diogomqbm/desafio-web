@@ -12,10 +12,20 @@ export const fetchPulls = ({ creator, repo }) => (
       },
       options: {
         onSuccess: ({ getState, dispatch, response }) => {
-          console.log(response)
+          dispatch({
+            type: c.FETCH_PULLS_SUCCESS,
+            payload: {
+              data: response.data
+            }
+          });
         },
         onError: ({ getState, dispatch, error }) => {
-          console.log(error)
+          dispatch({
+            type: c.FETCH_PULLS_FAIL,
+            payload: {
+              error
+            }
+          })
         }
       }
     }

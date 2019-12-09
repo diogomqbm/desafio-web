@@ -6,7 +6,7 @@ import { TextInput, Wrapper, Select, Label, Content, List } from "./styles";
 import Loading from "../../components/Loading";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
-import Repo from "../../components/Repo";
+import Repo from "../../components/ListItem";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const Search = () => {
   const getRepos = () => {
     if (repos.items) {
       return repos.items.map(i => (
-        <Repo key={i.id} {...i}/>
+        <Repo key={i.id} type="repo" {...i}/>
       ))
     }
   }
@@ -90,7 +90,7 @@ const Search = () => {
             {getOrderOptions}
           </Select>
         </div>
-        <Button type="submit">
+        <Button size="big" type="submit">
           Search repos
         </Button>
       </Header>

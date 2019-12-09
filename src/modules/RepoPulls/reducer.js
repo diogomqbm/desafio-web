@@ -2,7 +2,7 @@ import produce from "immer";
 import * as c from "./constants";
 
 const INITIAL_STATE = {
-  pulls: {},
+  pulls: [],
   loading: false,
   empty: false,
   error: "",
@@ -27,6 +27,9 @@ const pulls = (state = INITIAL_STATE, { type, payload }) =>
       case c.FETCH_PULLS_FAIL:
         draft.loading = false;
         draft.error = payload.error;
+        return;
+
+      default:
         return;
     }
   });

@@ -4,4 +4,7 @@ export const getInfoFromPath = (path) => {
     creator: info[1],
     repo: info[2]
   }
-} 
+};
+
+export const getPullsByState = (pulls, state) =>
+  pulls.filter(p => p.state === state);
