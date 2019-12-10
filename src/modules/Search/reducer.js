@@ -20,9 +20,10 @@ const search = (state = INITIAL_STATE, { type, payload }) =>
         draft.loading = false;
         if (payload.data) {
           if (state.repos.items) {
-            draft.page = state.page + 1;
+            draft.page = payload.data.page;
             draft.repos.items = state.repos.items.concat(payload.data.items);
           } else {
+            draft.page = payload.data.page;
             draft.repos = payload.data;
           }
         } else {

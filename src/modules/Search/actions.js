@@ -3,22 +3,24 @@ import * as c from "./constants";
 export const fetchRepos = (payload) => (
   dispatch
 ) => {
-  const { queryString, sort, page } = payload;
+  const { queryString, sort, page, order } = payload;
+  console.log(page)
   return dispatch({
     type: c.FETCH_REPOS,
     payload: {
       request: {
-        url: `/search/repositories?q=${queryString}&sort=${sort}&page=${page}`,
+        url: `/search/repositories?q=${queryString}&sort=${sort}&page=${page}&order=${order}`,
         method: "GET"
       },
       options: {
         onSuccess: ({ getState, dispatch, response }) => {
+          const state = getState();
           dispatch({
             type: c.FETCH_REPOS_SUCCESS,
             payload: {
-              data: response.data
+              data: {...response.data, page: state.search.page + 1 }
             }
-          })
+          });
         },
         onError: ({ getState, dispatch, error }) => {
           dispatch({

@@ -12,8 +12,30 @@ const Search = () => {
   const dispatch = useDispatch();
   const [queryString, setQueryString] = useState("Javascript");
   const [sort, setSort] = useState("stars");
-  const [order, setOrder] = useState("asc");
+  const [order, setOrder] = useState("desc");
+  const [request, setRequest] = useState(false);
   const { loading, repos, empty, error, page } = useSelector(state => state.search);
+
+  
+  const makeInfiniteScroll = () => {
+    const list = document.getElementById("list");
+    list.addEventListener('scroll', (e) => {
+      const elem = e.target;
+      if (elem.scrollTop + elem.clientHeight === elem.scrollHeight) {
+        setRequest(true);
+      }
+    });
+  };
+
+  useEffect(() => {
+    searchRepos(request)
+    setRequest(false);
+  }, [request]);
+
+  useEffect(() => {
+    searchRepos(true)
+    makeInfiniteScroll();
+  }, []);
 
   const getOptions = (options) =>
     options.map(o => (
@@ -22,27 +44,17 @@ const Search = () => {
 
   const getSortOptions = getOptions(SORT_OPTIONS);
   const getOrderOptions = getOptions(ORDER_OPTIONS);
-  const searchRepos = () => dispatch(fetchRepos({
-    queryString,
-    page,
-    sort,
-    order
-  }));
 
-  const makeInfiniteScroll = () => {
-    const list = document.getElementById("list");
-    list.addEventListener('scroll', (e) => {
-      const elem = e.target;
-      if (elem.scrollTop + elem.clientHeight === elem.scrollHeight) {
-        searchRepos();
-      }
-    });
-  }
-
-  useEffect(() => {
-    searchRepos();
-    makeInfiniteScroll();
-  }, []);
+  const searchRepos = (shouldRequest) => {
+    if (shouldRequest) {
+      return dispatch(fetchRepos({
+        queryString,
+        page,
+        sort,
+        order
+      }));
+    }
+  };
 
   const getRepos = () => {
     if (repos.items) {
